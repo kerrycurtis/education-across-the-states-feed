@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+     xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Education Across the States</title>
+  <description>Weekday education briefings and weekly deep dives, state by state across America. Daily news, regulation walkthroughs, district profiles, and trend analysis — starting with New England.
+
+AI Generated</description>
+  <language>en</language>
+    <itunes:author>Professional Development Inc</itunes:author>
+    <itunes:category text="Education" />
+    <itunes:owner>
+      <itunes:name>Professional Development Inc</itunes:name>
+      <itunes:email>kerry.f.curtis@gmail.com</itunes:email>
+    </itunes:owner>
+  <itunes:explicit>false</itunes:explicit>
+  <atom:link href="https://kerrycurtis.github.io/education-across-the-states-feed/feed.xml" rel="self" type="application/rss+xml"/>
+  <itunes:image href="https://muse.ai/podcasts/media/1337692426099284/ac5626cf-254c-4fb4-b4a4-7aa3dd422fa5/cover.png"/>
+  <image>
+    <url>https://muse.ai/podcasts/media/1337692426099284/ac5626cf-254c-4fb4-b4a4-7aa3dd422fa5/cover.png</url>
+    <title>Education Across the States</title>
+    <link>https://muse.ai/podcasts/feed/1337692426099284/ac5626cf-254c-4fb4-b4a4-7aa3dd422fa5</link>
+  </image>
+  <item>
+    <title>Education Across the States — Trailer</title>
+    <description>Welcome to Education Across the States: weekday education briefings and weekly deep dives, state by state. Starting with Maine, Vermont, Massachusetts, Connecticut, and Rhode Island.
+
+AI Generated</description>
+    <enclosure url="https://muse.ai/podcasts/media/1337692426099284/ac5626cf-254c-4fb4-b4a4-7aa3dd422fa5/ep-210c2ede-3bf7-4cd8-913e-7760154ba040.mp3" length="542629" type="audio/mpeg"/>
+    <guid isPermaLink="false">ep-210c2ede-3bf7-4cd8-913e-7760154ba040</guid>
+    <pubDate>Mon, 19 Oct 2026 17:27:38 +0000</pubDate>
+    <itunes:duration>67</itunes:duration>
+  </item>
+</channel>
+</rss>
