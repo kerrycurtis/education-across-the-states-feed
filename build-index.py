@@ -58,6 +58,8 @@ nav a{margin-right:14px;color:#1a3a5c}
 .ep .meta{color:#777;font-size:.85em;margin-bottom:6px}
 .ep p{margin:6px 0 0;font-size:.92em;color:#333}
 audio{width:100%;margin-top:8px}
+.playbtn{display:inline-block;margin-top:10px;padding:9px 18px;background:#1a3a5c;color:#fff !important;border-radius:24px;text-decoration:none;font-weight:600;font-size:.95em}
+.playbtn:hover{background:#2a5a8c}
 footer{margin-top:32px;color:#888;font-size:.8em;border-top:1px solid #ddd;padding-top:12px}
 """
 
@@ -114,7 +116,10 @@ def episode_card(ep):
     if ep["dur"]:
         meta += " &middot; " + html.escape(ep["dur"])
     blurb = html.escape(ep["blurb"])
-    player = f'<audio controls preload="none" src="{html.escape(ep["audio"])}"></audio>' if ep["audio"] else ""
+    # Inline <audio> players can't follow the media host's redirect on iOS Safari,
+    # so episode cards use a play button that opens the audio directly instead.
+    player = (f'<a class="playbtn" href="{html.escape(ep["audio"])}" target="_blank" rel="noopener">'
+              f'&#9654; Play episode</a>') if ep["audio"] else ""
     return (f'<div class="ep"><h3>{t}</h3>'
             f'<div class="meta">{meta}</div><p>{blurb}</p>{player}</div>')
 
