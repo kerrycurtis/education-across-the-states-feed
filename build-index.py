@@ -6,7 +6,7 @@ Reads feed.xml in this directory, groups episodes by their [State] / [Region]
 title prefix, and writes:
   index.html            - show homepage with latest episodes + links to every page
   <state-slug>.html     - one page per state (maine, vermont, massachusetts,
-                          connecticut, rhode-island)
+                          connecticut, rhode-island, new-hampshire)
   region-<slug>.html    - one page per regional special (new-england, atlantic,
                           mid-atlantic, midwest, west, southern)
 
@@ -21,7 +21,8 @@ from email.utils import parsedate_to_datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 FEED_FILE = os.path.join(HERE, "feed.xml")
 
-STATES = ["Maine", "Vermont", "Massachusetts", "Connecticut", "Rhode Island"]
+STATES = ["Maine", "Vermont", "Massachusetts", "Connecticut", "Rhode Island",
+          "New Hampshire"]
 REGIONS = ["New England", "Atlantic", "Mid-Atlantic", "Midwest", "West", "Southern"]
 
 PAGE_CSS = """
