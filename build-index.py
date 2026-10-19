@@ -25,6 +25,23 @@ STATES = ["Maine", "Vermont", "Massachusetts", "Connecticut", "Rhode Island",
           "New Hampshire"]
 REGIONS = ["New England", "Atlantic", "Mid-Atlantic", "Midwest", "West", "Southern"]
 
+# Episode titles carry a short bracket prefix like [NH] or [Maine]; map it to
+# the full state name used for grouping and page slugs.
+PREFIX_TO_STATE = {
+    "NH": "New Hampshire",
+    "ME": "Maine",
+    "VT": "Vermont",
+    "MA": "Massachusetts",
+    "CT": "Connecticut",
+    "RI": "Rhode Island",
+    "Maine": "Maine",
+    "Vermont": "Vermont",
+    "Massachusetts": "Massachusetts",
+    "Connecticut": "Connecticut",
+    "Rhode Island": "Rhode Island",
+    "New Hampshire": "New Hampshire",
+}
+
 PAGE_CSS = """
 body{font-family:-apple-system,system-ui,'Segoe UI',Roboto,sans-serif;max-width:860px;
 margin:0 auto;padding:24px 16px;color:#1a1a1a;background:#fafafa}
@@ -127,8 +144,9 @@ def main():
     other = []
     for ep in items:
         p = prefix_of(ep["title"])
-        if p in groups:
-            groups[p].append(ep)
+        state = PREFIX_TO_STATE.get(p)
+        if state:
+            groups[state].append(ep)
         elif p.endswith("Special") and p[:-8].strip() in region_groups:
             region_groups[p[:-8].strip()].append(ep)
         elif p in region_groups:
