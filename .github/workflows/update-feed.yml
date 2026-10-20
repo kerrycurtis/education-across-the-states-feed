@@ -27,7 +27,9 @@ jobs:
           CATEGORY = "Education"
           # Excluded GUIDs: add a GUID here to pull an episode out of the public feed
           # (used when a corrected "Revised" edition replaces an original).
-          EXCLUDED_GUIDS = []
+          EXCLUDED_GUIDS = [
+              "ep-2abaecb8-8c85-4f75-b270-d3d32b24e28f",  # 2026-10-19: defective NM launch (two ~20s voice dropouts); replaced by revised ep-f8f4731a-9592-4c4b-8b8b-0d8c341445d0
+          ]
 
           req = urllib.request.Request(UPSTREAM, headers={"User-Agent": "Mozilla/5.0"})
           with urllib.request.urlopen(req, timeout=60) as resp:
