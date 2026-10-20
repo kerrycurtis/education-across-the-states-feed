@@ -1043,9 +1043,12 @@ AI Generated</description>
     <pubDate>Mon, 19 Oct 2026 21:17:13 +0000</pubDate>
     <itunes:duration>253</itunes:duration>
   </item>
+  
   <item>
-    <title>[New Mexico] Introducing New Mexico: Your New Daily Education Show</title>
+    <title>[New Mexico] Introducing New Mexico: Your New Daily Education Show (Revised)</title>
     <description>Meet the new daily New Mexico education show: a snapshot of 320,000 students in 189 districts and charter systems, the governor-appointed Public Education Department, and the two biggest 2026 storylines — court-ordered Martinez/Yazzie equity compliance and big literacy gains against flat math and science.
+
+(Revised edition — replaces the launch version, which had two sections where the voice audio dropped out.)
 
 Sources:
 - New Mexico Public Education Department news release (320,000 students, 189 districts and charters): https://mailchi.mp/state.nm.us/release-17288481
@@ -1053,10 +1056,10 @@ Sources:
 - New Mexico lawmakers consider how to address public school funding formula concerns (Las Cruces Sun-News, 2026-07-29): https://www.lcsun-news.com/story/news/education/2026/07/29/new-mexico-lawmakers-consider-how-to-address-public-school-funding-formula-concerns/91062830007/
 
 AI Generated</description>
-    <enclosure url="https://muse.ai/podcasts/media/1337692426099284/ac5626cf-254c-4fb4-b4a4-7aa3dd422fa5/ep-2abaecb8-8c85-4f75-b270-d3d32b24e28f.mp3" length="2470693" type="audio/mpeg"/>
-    <guid isPermaLink="false">ep-2abaecb8-8c85-4f75-b270-d3d32b24e28f</guid>
-    <pubDate>Mon, 19 Oct 2026 21:29:57 +0000</pubDate>
-    <itunes:duration>308</itunes:duration>
+    <enclosure url="https://muse.ai/podcasts/media/1337692426099284/ac5626cf-254c-4fb4-b4a4-7aa3dd422fa5/ep-f8f4731a-9592-4c4b-8b8b-0d8c341445d0.mp3" length="1951909" type="audio/mpeg"/>
+    <guid isPermaLink="false">ep-f8f4731a-9592-4c4b-8b8b-0d8c341445d0</guid>
+    <pubDate>Tue, 20 Oct 2026 00:52:55 +0000</pubDate>
+    <itunes:duration>243</itunes:duration>
   </item>
 </channel>
 </rss>
