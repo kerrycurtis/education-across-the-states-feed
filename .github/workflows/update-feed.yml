@@ -1,4 +1,4 @@
-name: Update Umbrella Feed
+name: Write redirect stub feed
 
 on:
   schedule:
@@ -9,91 +9,23 @@ permissions:
   contents: write
 
 jobs:
-  update-feed:
+  stub:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-
-      - name: Rebuild feed.xml from upstream
+      - name: Write redirect feed.xml (feed moved to the Education Across the States GitHub organization)
         run: |
-          python3 - <<'PYEOF'
-          import os, re, urllib.request
-
-          UPSTREAM = "https://muse.ai/podcasts/feed/1337692426099284/ac5626cf-254c-4fb4-b4a4-7aa3dd422fa5"
-          PROXY_BASE = "https://kerrycurtis.github.io/education-across-the-states-feed"
-          AUTHOR = "Professional Development Inc"
-          OWNER_EMAIL = "kerry.f.curtis@gmail.com"
-          CATEGORY = "Education"
-          # Excluded GUIDs: add a GUID here to pull an episode out of the public feed
-          # (used when a corrected "Revised" edition replaces an original).
-          EXCLUDED_GUIDS = [
-              "ep-2abaecb8-8c85-4f75-b270-d3d32b24e28f",  # 2026-10-19: defective NM launch (two ~20s voice dropouts); replaced by revised ep-f8f4731a-9592-4c4b-8b8b-0d8c341445d0
-              "ep-1a035f9b-f585-468a-a7b7-9b74fe463fbb",  # 2026-10-20: defective AR daily (7.3s dead air at 99s); replaced by revised ep-894d4a4c-b206-44c8-81b8-4342caaf0e89
-          ]
-
-          req = urllib.request.Request(UPSTREAM, headers={"User-Agent": "Mozilla/5.0"})
-          with urllib.request.urlopen(req, timeout=60) as resp:
-              feed = resp.read().decode("utf-8")
-              # Remove any <item> block whose <guid> contains an excluded GUID.
-              def _remove_excluded_items(xml):
-                  def _keep(match):
-                      guid_match = re.search(r"<guid[^>]*>(.*?)</guid>", match.group(0), flags=re.S)
-                      if guid_match and any(excluded in guid_match.group(1) for excluded in EXCLUDED_GUIDS):
-                          return ""
-                      return match.group(0)
-                  return re.sub(r"<item>.*?</item>", _keep, xml, flags=re.S)
-
-              feed = _remove_excluded_items(feed)
-
-          feed = re.sub(r"\s*<itunes:author>.*?</itunes:author>", "", feed, flags=re.S)
-          feed = re.sub(r"\s*<itunes:category[^/]*/>", "", feed)
-          feed = re.sub(r"\s*<itunes:category[^>]*>.*?</itunes:category>", "", feed, flags=re.S)
-          feed = re.sub(r"\s*<itunes:owner>.*?</itunes:owner>", "", feed, flags=re.S)
-
-          tags = (
-              f"\n    <itunes:author>{AUTHOR}</itunes:author>"
-              f'\n    <itunes:category text="{CATEGORY}" />'
-              f"\n    <itunes:owner>\n      <itunes:name>{AUTHOR}</itunes:name>"
-              f"\n      <itunes:email>{OWNER_EMAIL}</itunes:email>\n    </itunes:owner>"
-          )
-          feed, n = re.subn(r"(<language>[^<]*</language>)", r"\1" + tags, feed, count=1)
-          if n == 0:
-              raise SystemExit("anchor <language> tag not found")
-
-          self_url = PROXY_BASE.rstrip("/") + "/feed.xml"
-          feed = re.sub(
-              r'(<atom:link href=")[^"]*(" rel="self")',
-              r"\g<1>" + self_url + r"\g<2>",
-              feed,
-              count=1,
-          )
-
-          def guids(text):
-              return set(re.findall(r"<guid[^>]*>(.*?)</guid>", text))
-
-          old_guids = guids(open("feed.xml", encoding="utf-8").read()) if os.path.exists("feed.xml") else set()
-          new_guids = guids(feed)
-          if old_guids == new_guids and old_guids:
-              print(f"no change ({len(new_guids)} episodes)")
-          else:
-              with open("feed.xml", "w", encoding="utf-8") as f:
-                  f.write(feed)
-              print(f"updated feed.xml ({len(new_guids)} episodes)")
-          PYEOF
-
-      - name: Rebuild per-state index pages
-        run: |
-          python3 build-index.py
-
+          cp stub-feed.xml feed.xml
+          echo "wrote redirect feed.xml (0 episodes, itunes:new-feed-url -> organization feed)"
       - name: Commit and push if changed
         run: |
           git config user.name "podcast-feed-bot"
           git config user.email "podcast-feed-bot@users.noreply.github.com"
-          git add feed.xml index.html *.html
-          if git diff --cached --quiet; then
-            echo "feed and index pages unchanged, nothing to commit"
+          if git diff --quiet -- feed.xml; then
+            echo "feed.xml unchanged, nothing to commit"
           else
-            git commit -m "Update umbrella feed and state index pages"
+            git add feed.xml
+            git commit -m "Redirect feed to Education Across the States organization"
             git push
           fi
